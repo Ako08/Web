@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Biography</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+      :root { --brand-blue: #0d6efd; }
+      body { background:#f8f9fa; }
+      .brand { color: var(--brand-blue); }
+      .profile-card { border-left: 4px solid var(--brand-blue); }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background:var(--brand-blue)">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="DashBoard.html">My Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBio" aria-controls="navBio" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navBio"></div>
+      </div>
+    </nav>
+
+    <main class="container py-4">
+      <div class="row g-4">
+        <div class="col-12">
+          <h2 class="brand">My Information</h2>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="card profile-card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Student</h5>
+              <p class="mb-1"><strong>Student No.:</strong> 02000374366</p>
+              <p class="mb-1"><strong>Name:</strong> Riccon Miguel Nieva PO</p>
+              <hr>
+              <h6>Hobbies</h6>
+              <p>Eating, reading, cycling, gaming</p>
+              <h6>Motto</h6>
+              <p class="text-muted">"Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment"</p>
+              <a class="btn btn-outline-primary mt-2" href="DashBoard.html">Back to Dashboard</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-8">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title brand">Education</h5>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Level</th>
+                      <th scope="col">School Name</th>
+                      <th scope="col">Year/Grades</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Elementary</td>
+                      <td>Marilao Central School</td>
+                      <td>1 - 6</td>
+                    </tr>
+                    <tr>
+                      <td>Junior High</td>
+                      <td>Saluysoy Integrated School</td>
+                      <td>7 - 10</td>
+                    </tr>
+                    <tr>
+                      <td>Senior High</td>
+                      <td>Holy Trinity School</td>
+                      <td>11 - 12</td>
+                    </tr>
+                    <tr>
+                      <td>College</td>
+                      <td>STI Meycauayan</td>
+                      <td>1st yr - 3rd yr</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-center text-muted py-3">© 2026 My Profile</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
+
