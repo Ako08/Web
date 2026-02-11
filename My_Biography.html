@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Biography</title>
+</head>
+
+<body style="font-family: Verdana, Geneva, sans-serif;font-family: Verdana, Geneva, sans-serif;background-image: url('background.jpg');background-size: cover;background-repeat: no-repeat;background-attachment: fixed;">
+
+    <div style="width: auto; height: 650px; margin: 20px; border: 1px solid black; padding: 20px; position: relative;">
+
+    <div style="text-align: center; margin-top: 120px;">
+
+        <img src="me.jpg" alt="Profile Image"style="width: 150px; position: absolute; top: 40px; right: 40px;">
+
+        <label>Lastname:</label>
+            <input type="text" id="lname"><br><br>
+
+            <label>Firstname:</label>
+            <input type="text" id="fname"><br><br>
+
+            <label>Middle Name:</label>
+            <input type="text" id="mname"><br><br>
+
+            <button onclick="showFullName()">Submit</button>
+    </div>
+<hr>
+
+        <h2 style="text-align: center;" id="fullname">
+            Full Name
+        </h2>
+
+        <p style="text-align: justify;">
+            I am a Riccon Miguel Po, Age 20 who is currently learning the basics of HTML. I enjoy creating simple web pages and experimenting with how design and functionality work together. Learning new things in technology motivates me to improve my skills and gain more confidence in coding. During my free time, I like exploring new ideas, and working on small projects to challenge myself. My goal is to continue developing my knowledge in information technology and use these skills in the future.
+        </p>
+
+</div>
+
+    <script>
+        function showFullName() {
+            var first = document.getElementById("fname").value;
+            var middle = document.getElementById("mname").value;
+            var last = document.getElementById("lname").value;
+
+            document.getElementById("fullname").innerHTML =
+                first + " " + middle + " " + last;
+        }
+    </script>
+
+</body>
+</html>

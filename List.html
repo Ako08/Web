@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Name List Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        :root { --brand-blue: #0d6efd; }
+        body { background: #f8f9fa; }
+        .brand { color: var(--brand-blue); }
+        .card-title { color: var(--brand-blue); }
+        .btn-primary { background-color: var(--brand-blue); border-color: var(--brand-blue); }
+        .btn-primary:hover { background-color: #0b5ed7; }
+        #output { margin-top: 2rem; }
+        .list-item { padding: 0.5rem 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: var(--brand-blue)">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="DashBoard.html">My Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navList" aria-controls="navList" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navList">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Biography.html">Biography</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="DashBoard.html">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <h2 class="card-title brand mb-4">Name List Generator</h2>
+                        <p class="text-muted mb-4">Generate custom lists from comma-separated names. Choose between unordered, ordered, or description lists.</p>
+
+                        <form id="listForm">
+                            <div class="mb-3">
+                                <label for="nameInput" class="form-label">Enter Names (comma separated)</label>
+                                <input type="text" class="form-control" id="nameInput" placeholder="e.g., John, Anna, Mark" required>
+                                <small class="form-text text-muted">Separate each name with a comma</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="listType" class="form-label">Select List Type</label>
+                                <select id="listType" class="form-select">
+                                    <option value="ul">Unordered List (Bullets)</option>
+                                    <option value="ol">Ordered List (Numbers)</option>
+                                    <option value="dl">Description List</option>
+                                </select>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                                <button type="button" class="btn btn-primary" onclick="generateList()">Generate List</button>
+                                <button type="reset" class="btn btn-outline-secondary">Clear</button>
+                            </div>
+                        </form>
+
+                        <div id="message" class="alert alert-danger d-none mt-3" role="alert"></div>
+
+                        <div id="output" class="mt-4">
+                            <!-- Generated list will appear here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a href="DashBoard.html" class="btn btn-outline-primary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center text-muted py-3 mt-5">© 2026 My Dashboard</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+        function generateList() {
+            let input = document.getElementById("nameInput").value.trim();
+            let listType = document.getElementById("listType").value;
+            let messageEl = document.getElementById("message");
+            let output = document.getElementById("output");
+
+            // Clear previous message and output
+            messageEl.textContent = "";
+            messageEl.classList.add("d-none");
+            output.innerHTML = "";
+
+            // Validation: must contain comma
+            if (!input.includes(",")) {
+                messageEl.textContent = "Please enter names separated by commas.";
+                messageEl.classList.remove("d-none");
+                return;
+            }
+
+            // Split names and remove extra spaces
+            let names = input.split(",").map(name => name.trim()).filter(name => name.length > 0);
+
+            if (names.length === 0) {
+                messageEl.textContent = "Please enter at least one valid name.";
+                messageEl.classList.remove("d-none");
+                return;
+            }
+
+            // Create card wrapper for the output
+            let outputCard = document.createElement("div");
+            outputCard.className = "card border-success";
+
+            let cardBody = document.createElement("div");
+            cardBody.className = "card-body";
+
+            let cardTitle = document.createElement("h5");
+            cardTitle.className = "card-title brand";
+            cardTitle.textContent = "Generated List";
+            cardBody.appendChild(cardTitle);
+
+            let listContainer = document.createElement("div");
+
+            if (listType === "dl") {
+                let dl = document.createElement("dl");
+                dl.className = "row";
+
+                names.forEach(name => {
+                    let dt = document.createElement("dt");
+                    dt.className = "col-sm-3 list-item";
+                    dt.textContent = name;
+
+                    let dd = document.createElement("dd");
+                    dd.className = "col-sm-9 list-item";
+                    dd.textContent = "Description of " + name;
+
+                    dl.appendChild(dt);
+                    dl.appendChild(dd);
+                });
+
+                listContainer.appendChild(dl);
+            } else {
+                let list = document.createElement(listType);
+                list.className = "ps-4";
+
+                names.forEach(name => {
+                    let li = document.createElement("li");
+                    li.className = "list-item";
+                    li.textContent = name;
+                    list.appendChild(li);
+                });
+
+                listContainer.appendChild(list);
+            }
+
+            cardBody.appendChild(listContainer);
+            outputCard.appendChild(cardBody);
+            output.appendChild(outputCard);
+        }
+
+        // Allow Enter key to generate list
+        document.getElementById("nameInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                generateList();
+            }
+        });
+    </script>
+</body>
+</html>
